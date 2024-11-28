@@ -1,7 +1,6 @@
 [
 
   {
-    "_id": "user121",
     "username": "john_doe",
     "email": "john@example.com",
     "password_hash": "hashed_password",
@@ -27,7 +26,6 @@
     ]
   },
   {
-    "_id": "user122",
     "username": "john_doe",
     "email": "john@example.com",
     "password_hash": "hashed_password",
@@ -53,7 +51,6 @@
     ]
   },
   {
-    "_id": "user123",
     "username": "john_doe",
     "email": "john@example.com",
     "password_hash": "hashed_password",
@@ -79,7 +76,6 @@
     ]
   },
   {
-    "_id": "user124",
     "username": "john_doe",
     "email": "john@example.com",
     "password_hash": "hashed_password",
@@ -103,5 +99,13 @@
         ]
       }
     ]
+  },
+  {
+    "_id": {
+      "$oid": "67487197128ec54111ddd28f"
+    },
+    "username": "Woodis",
+    "email": "stephane78.descarpentries@gmail.com",
+    "password_hash": "AZERTY"
   }
   ]

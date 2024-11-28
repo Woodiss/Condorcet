@@ -10,9 +10,7 @@ def get_users():
     """Récupérer les informations d'un utilisateur."""
     users = UserModel.find_all_user()
     if users:
-        return jsonify(users)
-        # return jsonify(user), 200
-        return render_template("profile.html", users=users)
+        return render_template("index_user.html", users=users)
     return jsonify({"error": "User not found"}), 404
 
 @user_routes.route('/user/<id_user>', methods=['GET'])
@@ -23,3 +21,33 @@ def get_user(id_user):
         # return jsonify(user), 200
         return render_template("profile.html", user=user)
     return jsonify({"error": "User not found"}), 404
+
+@user_routes.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    """Afficher le formulaire ou ajouter un nouvel utilisateur."""
+    from flask import request, render_template
+    from app.models.user import UserModel
+
+    if request.method == 'GET':
+        # Affiche le formulaire
+        return render_template('add_user.html')
+
+    if request.method == 'POST':
+        # Traite les données du formulaire
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Validation simple
+        if not username or not email or not password:
+            return {"error": "Tous les champs sont obligatoires"}, 400
+
+        # Insérer l'utilisateur dans la base de données
+        user_data = {
+            "username": username,
+            "email": email,
+            "password_hash": password  # Exemple de hachage
+        }
+        UserModel.create_user(user_data)
+
+        return {"message": "Utilisateur ajouté avec succès"}, 201
